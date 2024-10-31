@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+
+{% block title %}
+Scraper
+{% endblock %}
+
+{% block content %}
+<div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-lg">
+            <h2 class="text-2xl font-bold mb-4 text-center">Marks Scraper</h2>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                
+                <div class="mb-4">
+                    <label for="prefix_usn" class="block text-sm font-medium text-gray-900">{{ form.prefix_usn.label }}</label>
+                    <div class="mt-2">
+                        {{ form.prefix_usn|add_class:"block p-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm" }}
+                        {% if form.prefix_usn.errors %}
+                            <p class="text-red-500 text-xs italic">{{ form.prefix_usn.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="usn_range" class="block text-sm font-medium text-gray-900">{{ form.usn_range.label }}</label>
+                    <div class="mt-2">
+                        {{ form.usn_range|add_class:"block p-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm" }}
+                        {% if form.usn_range.errors %}
+                            <p class="text-red-500 text-xs italic">{{ form.usn_range.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="sem" class="block text-sm font-medium text-gray-900">{{ form.sem.label }}</label>
+                    <div class="mt-2">
+                        {{ form.sem|add_class:"block p-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm" }}
+                        {% if form.sem.errors %}
+                            <p class="text-red-500 text-xs italic">{{ form.sem.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="url" class="block text-sm font-medium text-gray-900">{{ form.url.label }}</label>
+                    <div class="mt-2">
+                        {{ form.url|add_class:"block p-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm" }}
+                        {% if form.url.errors %}
+                            <p class="text-red-500 text-xs italic">{{ form.url.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Scrape Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
